@@ -1,4 +1,6 @@
-{
+import 'dotenv/config';
+
+export default{
   "expo": {
     "name": "vendureMobileApp",
     "slug": "vendureMobileApp",
@@ -37,6 +39,13 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "dd4e3f22-a94c-464b-952a-f3f90251414a"
+      },
+       "API_URL":  process.env.API_URL,
     }
   }
 }
