@@ -6,6 +6,8 @@ export interface Category {
     };
   }
   
+
+  
   export interface Product {
     featuredAsset: {
       source: string;
@@ -92,3 +94,35 @@ export interface Category {
     name: string;
     price: number;
   }
+
+
+  // store interfaces
+  
+  export interface CartItem {
+    id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    product:Product;
+  };
+  
+  export interface User {
+    id: string;
+    customer:Customer
+  };
+
+  export interface StoreState  {
+    // Auth
+    isLoggedIn: boolean;
+    user: User | null;
+    setIsLoggedIn : (loggedIn:boolean) => void;
+    login: (user: User) => void;
+    logout: () => void;
+  
+    // Cart
+    cart: CartItem[];
+    addToCart: (item: CartItem) => void;
+    removeFromCart: (id: string) => void;
+    clearCart: () => void;
+    getCartTotal: () => number;
+  };
