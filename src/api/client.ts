@@ -11,12 +11,11 @@ import Constants from 'expo-constants';
 const API = Constants.expoConfig?.extra?.API_URL;
 // const API = `https://demo.vendure.io/shop-api`;
 
+
 const AUTH_TOKEN_KEY = 'token';
 
 let channelToken: string | undefined;
 let languageCode: string | undefined;
-
-
 
 const httpLink = new HttpLink({
   uri: () => {

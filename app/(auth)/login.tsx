@@ -172,7 +172,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
                   router.push("./register");
                 }}
               >
-                <Link style={styles.TouchableOpacitybtnText} href={"/profile/register/index"}>Register</Link>
+                <Link style={styles.TouchableOpacitybtnText} href={"/register"}>Register</Link>
               </TouchableOpacity>
             </View>
           </View>

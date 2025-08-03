@@ -1,12 +1,16 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import Slider from "@/components/Slider";
 
-const category = () => {
+export default function index() {
   return (
-    <View>
-      <Text>category</Text>
-    </View>
-  )
+    <ScrollView>
+      <View>
+        <Text>category</Text>
+        {/* <Slider /> */}
+      </View>
+    </ScrollView>
+  );
 }
 
-export default category
+const styles = StyleSheet.create({});

@@ -1,36 +1,38 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs } from "expo-router";
 
 export default function RootLayout() {
   return (
-    <Tabs 
-    screenOptions={{ 
-        tabBarActiveTintColor: "blue"  
-    }}
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "blue",
+      }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
           headerShown: false,
+          title: "Home",
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="home" size={24} color="black" />
+            <FontAwesome5 name="home" size={24} color="black" />
           ),
         }}
       />
+
       <Tabs.Screen
         name="category"
         options={{
           title: "Category",
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="category" size={24} color="black" />
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialIcons name="category" focused size={24} color="black" />
+            // <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color} />
           ),
         }}
       />
-       <Tabs.Screen
+      <Tabs.Screen
         name="cart"
         options={{
           title: "Cart",

@@ -83,14 +83,12 @@ export const GET_SIMILAR_PRODUCTS = gql`
 
 export const GET_ALL_COLLECTIONS = gql`
   query GetCollections {
-  collections {
-    items{
-      id
-      name
+    collections {
+      items {
+        id
+        name
+      }
+      totalItems
     }
-    
-    totalItems
   }
-}
-
 `;
