@@ -1,8 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { Redirect } from 'expo-router';
 
 const index = () => {
   // const { isLoggedIn } = useAuth();
+  const isLoggedIn = true;
   // const router = useRouter();
 
   // useEffect(() => {
@@ -12,6 +14,10 @@ const index = () => {
   // }, [isLoggedIn]);
 
   // if (!isLoggedIn) return null; // or loading spinner
+
+  if(!isLoggedIn){
+    return <Redirect href="/login" />;
+  }
 
   return (
     <View>

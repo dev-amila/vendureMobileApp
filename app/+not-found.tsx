@@ -3,8 +3,8 @@ import React from 'react'
 
 export default function NotFound() {
   return (
-    <View>
-      <Text>+not-found</Text>
+    <View className='flex-1 justify-center items-center'>
+      <Text >not-found</Text>
     </View>
   )
 }

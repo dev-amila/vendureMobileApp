@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function puchaseHistory() {
+export default function ProductDetails() {
   return (
     <View>
-      <Text>puchaseHistory</Text>
+      <Text> ProductDetails</Text>
     </View>
   )
 }
