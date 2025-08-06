@@ -1,21 +1,20 @@
-import { useQuery } from "@apollo/client";
-import { FlashList } from "@shopify/flash-list";
 import React from "react";
 import {
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
 } from "react-native";
+import { FlashList } from "@shopify/flash-list";
+import { useQuery } from "@apollo/client";
 
-import { Product } from "@/src/utils/interface";
 import { moderateScale } from "react-native-size-matters";
+import { Product } from "@/src/utils/interface";
 import FeedSectionContainer from "./FeedSectionContainer";
 import ProductPrice from "./ProductPrice";
 
 export interface BannerProps {
-//   navigation: any;
   query: any;
   title: string;
 }
@@ -28,7 +27,7 @@ const Banner: React.FC<BannerProps> = ({  query, title }) => {
   }
 
   const products: Product[] =
-    data?.collection?.productVariants?.items?.map((item: { product: any; }) => item.product) || [];
+    data?.collection?.productVariants?.items?.map((item) => item.product) || [];
 
   return (
     <FeedSectionContainer title={title}>
@@ -40,15 +39,15 @@ const Banner: React.FC<BannerProps> = ({  query, title }) => {
 
           return (
             <TouchableOpacity
-              onPress={() => {
-                // navigation.navigate("Products", {
-                //   products: data?.collection?.productVariants?.items,
-                //   selectedIndex: index,
-                //   productVariantId: items_.id,
-                //   price: item.variants.priceWithTax,
-                //   categoryID: categoryID
-                // });
-              }}
+              // onPress={() => {
+              //   navigation.navigate("Products", {
+              //     products: data?.collection?.productVariants?.items,
+              //     selectedIndex: index,
+              //     productVariantId: items_.id,
+              //     price: item.variants[0].priceWithTax,
+              //     categoryID: categoryID
+              //   });
+              // }}
             >
               <View
                 style={[styles.imageContainer, { width: moderateScale(250, 0.1) }]}
@@ -71,7 +70,7 @@ const Banner: React.FC<BannerProps> = ({  query, title }) => {
 
                 <View style={styles.priceContainer}>
                   <Text style={styles.priceText}>Price: </Text>
-                  <ProductPrice price={item.variants.priceWithTax} />
+                  <ProductPrice price={item.variants[0].priceWithTax} />
                 </View>
               </View>
             </TouchableOpacity>
@@ -79,6 +78,8 @@ const Banner: React.FC<BannerProps> = ({  query, title }) => {
         }}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        // estimatedListSize={{ height: 170, width: 200 }}
+        estimatedItemSize={300}
       />
     </FeedSectionContainer>
   );

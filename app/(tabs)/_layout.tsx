@@ -26,6 +26,7 @@ export default function RootLayout() {
         name="category"
         options={{
           title: "Category",
+          headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <MaterialIcons name="category" focused size={24} color="black" />
             // <Ionicons name={focused ? "home" : "home-outline"} size={size} color={color} />
@@ -35,6 +36,7 @@ export default function RootLayout() {
       <Tabs.Screen
         name="cart"
         options={{
+          headerShown: false,
           title: "Cart",
           tabBarIcon: ({ color }) => (
             <Ionicons name="cart-outline" size={24} color="black" />
@@ -44,6 +46,7 @@ export default function RootLayout() {
       <Tabs.Screen
         name="profile"
         options={{
+          headerShown: false,
           title: "Profile",
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="user-alt" size={24} color="black" />

@@ -9,24 +9,20 @@ import Banner from "@/components/Banner";
 
 export default function index() {
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <SafeAreaView  style={styles.container}>
+      <ScrollView >
         <View>
           <Slider />
           <CategorySlider />
-
           <Banner
-            // navigation={navigation}
             query={GET_BANNER_1_QUERY}
             title="Topics of the day"
           />
           <Banner
-            // navigation={navigation}
             query={GET_BANNER_2_QUERY}
             title="Recommended"
           />
           <Banner
-            // navigation={navigation}
             query={GET_BANNER_3_QUERY}
             title="Favorites"
           />
