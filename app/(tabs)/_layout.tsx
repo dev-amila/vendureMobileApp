@@ -53,6 +53,21 @@ export default function RootLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="payment"
+        options={{
+          // tabBarButton: () => null,
+          href: null
+        }}
+      />
+       <Tabs.Screen
+        name="product"
+        options={{
+          // tabBarButton: () => null,
+          href: null // hides from tab bar
+        }}
+      />
+
     </Tabs>
   );
 }

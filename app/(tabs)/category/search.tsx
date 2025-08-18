@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Pressable,
-  TextInput,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import EmptySearchList from "@/components/EmptySearchList";
+import ShowWrapper from "@/components/ShowWrapper";
+import Icons from "@/components/icons/icons";
+import ProductPrice from "@/components/product/ProductPrice";
+import styles from "@/components/styles/SearchStyle";
+import { SEARCH_QUERY } from "@/src/api/mutation/search";
 import { useQuery } from "@apollo/client";
 import { FlashList } from "@shopify/flash-list";
-import { SEARCH_QUERY } from "@/src/api/mutation/search";
-import styles from "@/components/styles/SearchStyle";
-import Icons from "@/components/icons/icons";
-import EmptySearchList from "@/components/EmptySearchList";
+import React, { useState } from "react";
+import {
+  Image,
+  Pressable,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { moderateScale } from "react-native-size-matters";
-import ShowWrapper from "@/components/ShowWrapper";
-import ProductPrice from "@/components/ProductPrice";
 
 
 interface Product {

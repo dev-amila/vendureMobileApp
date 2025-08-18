@@ -7,6 +7,7 @@ import { GET_ALL_COLLECTIONS_QUERY } from '@/src/api/mutation/category';
 import { Category } from '@/src/utils/interface';
 import { moderateScale } from 'react-native-size-matters';
 import FeedSectionContainer from './FeedSectionContainer';
+import { router } from "expo-router";
 
 const Categories = () => {
   const { loading, error, data } = useQuery<{ collections: { items: Category[] } }>(
@@ -29,7 +30,7 @@ const Categories = () => {
           <TouchableOpacity
             style={styles.categoryItem}
             onPress={() => {
-         
+              router.push(`/category/${item.id}`)
             }}
           >
             <View style={styles.imageContainer}>

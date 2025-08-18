@@ -10,13 +10,15 @@ import {
   SafeAreaView,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "expo-router";
 import { Category } from "@/src/utils/interface";
 import { moderateScale } from "react-native-size-matters";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_COLLECTIONS_QUERY } from "@/src/api/mutation/category";
-import styles from "../../components/styles/CategoryStyles";
+import styles from "@/components/styles/CategoryStyles";
 
 export default function index() {
+  const router = useRouter();
   const [take] = useState(9);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -85,60 +87,57 @@ export default function index() {
   if (error) return <Text>Erro: {error.message}</Text>;
 
   return (
-    <SafeAreaView >
-      <View style={styles.container}>
-        <FlatList
-          key={numColumns}
-          ref={flatListRef}
-          data={categories}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              key={item.id}
-              style={[
-                styles.categoryItem,
-                {
-                  width: itemWidth,
-                },
-              ]}
-              onPress={() => {
-                // navigation.navigate("CategorySection", {
-                //   category: item,
-                // });
-              }}
-            >
-              <View style={styles.categoryImageContainer}>
-                <Image
-                  source={{
-                    uri:
-                      item.assets?.[0]?.source ??
-                      "https://www.arquivomedico.com.br/arquivomedicov3/assets/images/sem_imagem.png",
-                  }}
-                  style={styles.categoryImage}
-                  resizeMode="cover"
-                />
-              </View>
-              <Text style={styles.categoryText}>{item.name}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item.id}
-          numColumns={numColumns}
-          showsVerticalScrollIndicator={false}
-          onEndReachedThreshold={0.1}
-          onMomentumScrollBegin={() => setEndReachedCalledDuringMomentum(false)}
-          onEndReached={() => {
-            if (!endReachedCalledDuringMomentum) {
-              handleLoadMore();
-              setEndReachedCalledDuringMomentum(true);
-            }
-          }}
-          ListFooterComponent={
-            loadingMore ? (
-              // <Text>activity indicator</Text>
-              <ActivityIndicator size="large" />
-            ) : null
+    <View style={styles.container}>
+      <Text className="text-lg">Your Cart</Text>
+      <FlatList
+        key={numColumns}
+        ref={flatListRef}
+        data={categories}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            key={item.id}
+            style={[
+              styles.categoryItem,
+              {
+                width: itemWidth,
+              },
+            ]}
+            onPress={() => {
+              router.push(`/category/${item.id}`);
+            }}
+          >
+            <View style={styles.categoryImageContainer}>
+              <Image
+                source={{
+                  uri:
+                    item.assets?.[0]?.source ??
+                    "https://www.arquivomedico.com.br/arquivomedicov3/assets/images/sem_imagem.png",
+                }}
+                style={styles.categoryImage}
+                resizeMode="cover"
+              />
+            </View>
+            <Text style={styles.categoryText}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+        keyExtractor={(item) => item.id}
+        numColumns={numColumns}
+        showsVerticalScrollIndicator={false}
+        onEndReachedThreshold={0.1}
+        onMomentumScrollBegin={() => setEndReachedCalledDuringMomentum(false)}
+        onEndReached={() => {
+          if (!endReachedCalledDuringMomentum) {
+            handleLoadMore();
+            setEndReachedCalledDuringMomentum(true);
           }
-        />
-      </View>
-      </SafeAreaView>
+        }}
+        ListFooterComponent={
+          loadingMore ? (
+            // <Text>activity indicator</Text>
+            <ActivityIndicator size="large" />
+          ) : null
+        }
+      />
+    </View>
   );
 }

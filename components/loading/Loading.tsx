@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { View, ViewStyle } from 'react-native';
 import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
+    useAnimatedStyle,
+    useSharedValue,
+    withRepeat,
+    withTiming,
 } from 'react-native-reanimated';
 
 import styles from '@/components/styles/LoadingStyles';

@@ -1,18 +1,19 @@
+import { useQuery } from "@apollo/client";
+import { FlashList } from "@shopify/flash-list";
 import React from "react";
 import {
-  View,
   Image,
   StyleSheet,
-  TouchableOpacity,
   Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { FlashList } from "@shopify/flash-list";
-import { useQuery } from "@apollo/client";
 
-import { moderateScale } from "react-native-size-matters";
 import { Product } from "@/src/utils/interface";
+import { router } from "expo-router";
+import { moderateScale } from "react-native-size-matters";
 import FeedSectionContainer from "./FeedSectionContainer";
-import ProductPrice from "./ProductPrice";
+import ProductPrice from "./product/ProductPrice";
 
 export interface BannerProps {
   query: any;
@@ -39,18 +40,22 @@ const Banner: React.FC<BannerProps> = ({  query, title }) => {
 
           return (
             <TouchableOpacity
-              // onPress={() => {
-              //   navigation.navigate("Products", {
-              //     products: data?.collection?.productVariants?.items,
-              //     selectedIndex: index,
-              //     productVariantId: items_.id,
-              //     price: item.variants[0].priceWithTax,
-              //     categoryID: categoryID
-              //   });
-              // }}
+              onPress={() => {
+              router.push({
+                pathname: "/product",
+                params: {
+                  products: JSON.stringify(data?.collection?.productVariants?.items),
+                  selectedIndex: index,
+                  productVariantId: items_?.id,
+                  price: items_.priceWithTax,
+                  categoryID: data?.collection?.id,
+                },
+              })
+              }}
+              
             >
               <View
-                style={[styles.imageContainer, { width: moderateScale(250, 0.1) }]}
+                style={[styles.imageContainer, { width: moderateScale(250, 0.1), height: moderateScale(150, 0.1) }]}
                 key={items_.id}
               >
                 <Image
