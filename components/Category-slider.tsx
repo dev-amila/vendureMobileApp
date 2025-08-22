@@ -1,16 +1,19 @@
-import { GET_ALL_COLLECTIONS_QUERY } from "@/src/api/mutation/category";
-import { Category } from "@/src/utils/interface";
 import { useQuery } from "@apollo/client";
-import { FlashList } from "@shopify/flash-list";
-import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { moderateScale } from "react-native-size-matters";
-import FeedSectionContainer from "./FeedSectionContainer";
+import { FlashList } from '@shopify/flash-list';
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const CategorySlider = () => {
-  const { loading, error, data } = useQuery<{
-    collections: { items: Category[] };
-  }>(GET_ALL_COLLECTIONS_QUERY, { variables: { skip: 0, take: 9 } });
+import { GET_ALL_COLLECTIONS_QUERY } from '@/src/api/mutation/category';
+import { Category } from '@/src/utils/interface';
+import { moderateScale } from 'react-native-size-matters';
+import FeedSectionContainer from './FeedSectionContainer';
+import { router } from "expo-router";
+
+const Categories = () => {
+  const { loading, error, data } = useQuery<{ collections: { items: Category[] } }>(
+    GET_ALL_COLLECTIONS_QUERY,
+    { variables: { skip: 0, take: 9 } }
+  );  
 
   if (loading || error || !data || !data.collections) {
     return null;
@@ -27,15 +30,13 @@ const CategorySlider = () => {
           <TouchableOpacity
             style={styles.categoryItem}
             onPress={() => {
-              //   navigation.navigate("CategorySection", {
-              //     category: item
-              //   });
+              router.push(`/category/${item.id}`)
             }}
           >
             <View style={styles.imageContainer}>
               <Image
                 source={{
-                  uri: item.assets?.source || "",
+                  uri: item.assets[0].source || '',
                 }}
                 style={styles.image}
               />
@@ -74,4 +75,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategorySlider;
+export default Categories;
+

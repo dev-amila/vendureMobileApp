@@ -1,6 +1,7 @@
 export interface Category {
     id: string;
     name: string;
+    slug:string;
     assets: {
       source: string;
     };
@@ -93,6 +94,16 @@ export interface Category {
     id: string;
     name: string;
     price: number;
+  }
+
+  export interface Order {
+    id?: string;
+    totalWithTax: number;
+    total: number;
+    lines: OrderLine[];
+    shippingAddress?: Address;
+    shippingMethod?: ShippingMethod;
+    state?: string;
   }
 
 

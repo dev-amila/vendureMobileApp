@@ -102,6 +102,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
           password,
         },
       });
+      router.replace('/login')
     } catch (error) {
       Alert.alert(
         "Erro",
