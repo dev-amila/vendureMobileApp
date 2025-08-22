@@ -1,27 +1,27 @@
-import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Alert,
-  Platform,
-  KeyboardAvoidingView,
-} from "react-native";
-import { Text } from "react-native-paper";
 import { useMutation, useQuery } from "@apollo/client";
 import * as SecureStore from "expo-secure-store";
+import React from "react";
+import { useForm } from "react-hook-form";
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Text } from "react-native-paper";
 
-import { logInSchema } from "@/src/utils/validation";
+import { Button } from "@/components/Button";
+import TextField from "@/components/TextField";
+import { LOGIN_MUTATION } from "@/src/api/mutation/auth";
 import { GET_CUSTOMER } from "@/src/api/mutation/customer";
 import { SHOW_ORDER } from "@/src/api/mutation/order";
-import TextField from "@/components/TextField";
-import { Button } from "@/components/Button";
-import { LOGIN_MUTATION } from "@/src/api/mutation/auth";
 import { useStore } from "@/src/store/useStore";
+import styles from "@/src/styles/styles";
+import { logInSchema } from "@/src/utils/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useRouter } from "expo-router";
-import styles from "@/src/styles/styles";
 import { moderateScale } from "react-native-size-matters";
 
 type LoginFormData = {
@@ -29,16 +29,11 @@ type LoginFormData = {
   password: string;
 };
 
-interface LoginScreenProps {
-  navigation: any;
-}
-
-export default function LoginScreen({ navigation }: LoginScreenProps) {
+export default function Login() {
   const router = useRouter();
   const setIsLoggedIn = useStore((state) => state.setIsLoggedIn);
   const { refetch: refetchProfile } = useQuery(GET_CUSTOMER);
   const { refetch: refetchCart } = useQuery(SHOW_ORDER);
-
 
   const {
     handleSubmit,
@@ -60,16 +55,16 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           await refetchProfile();
           await refetchCart();
           setIsLoggedIn(true);
-          navigation.navigate("Profile");
+          router.replace("/(tabs)/profile");
           await makeAuthenticatedRequest(`${process.env.API_URL}`); 
         } else {
-          Alert.alert("Erro", "Utilizador ou senha inválidos.");
+          Alert.alert("Error", "Invalid Credentials.");
         }
       } catch (error) {
         console.error(error);
         Alert.alert(
           "Erro",
-          "Ocorreu um erro ao fazer login. Por favor, tente novamente."
+          "An error occurred while logging in. Please try again."
         );
       }
     },
@@ -100,7 +95,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       const token = await SecureStore.getItemAsync("token");
       return token;
     } catch (error) {
-      console.error("Erro ao obter o token:", error);
+      // console.error("Erro ao obter o token:", error);
       throw error;
     }
   }
@@ -110,7 +105,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       await SecureStore.setItemAsync("token", newToken);
       await SecureStore.setItemAsync("password", pass);
     } catch (error) {
-      console.error("Erro ao atualizar o token:", error);
+      // console.error("Erro ao atualizar o token:", error);
       throw error;
     }
   }
@@ -125,7 +120,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       const response = await fetch(url, { ...options, headers });
       return response.json();
     } catch (error) {
-      console.error("Erro ao fazer a solicitação autenticada:", error);
+      // console.error("Erro ao fazer a solicitação autenticada:", error);
       throw error;
     }
   }
@@ -169,7 +164,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
               <TouchableOpacity
                 style={styles.TouchableOpacitybtn}
                 onPress={() => {
-                  router.push("./register");
+                  router.push('/register');
                 }}
               >
                 <Link style={styles.TouchableOpacitybtnText} href={"/register"}>Register</Link>

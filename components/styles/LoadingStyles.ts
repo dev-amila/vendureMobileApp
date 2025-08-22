@@ -1,29 +1,30 @@
-import { ScaledSheet, moderateScale } from "react-native-size-matters";
+import { safeScale } from "@/src/utils/safeScale";
+import { ScaledSheet } from "react-native-size-matters";
 
 export default ScaledSheet.create({
   //BigLoading
   container_Big: {
     display: 'flex',
     alignItems: 'center',
-    padding: moderateScale(16, 0.1),
+    padding: safeScale(16),
     marginHorizontal: 'auto',
-    marginBottom: moderateScale(16, 0.1),
+    marginBottom: safeScale(16),
     textAlign: 'center', 
-    borderRadius: moderateScale(8, 0.1),
+    borderRadius: safeScale(8),
     backgroundColor: '#1F2937',
     maxWidth: 9999,
   },
   //Loading
   constainer_Loading:{
-    width: moderateScale(80, 0.1), 
-    height: moderateScale(24, 0.1), 
+    width: safeScale(80), 
+    height: safeScale(24), 
     position: 'relative'
   },
   AnimatedStyle:{
-    width: moderateScale(13, 0.1), 
-    height: moderateScale(13, 0.1), 
+    width: safeScale(13), 
+    height: safeScale(13), 
     backgroundColor: 'white', 
-    borderRadius: moderateScale(13/2, 0.1), 
+    borderRadius: safeScale(7), // Changed from 13/2 to 7 to avoid division
     position: 'absolute', 
     top: '15%'
   },
@@ -32,9 +33,9 @@ export default ScaledSheet.create({
     position: 'absolute',
     height: '100%',
     width: '100%',
-    top: moderateScale(0, 0.1),
-    left: moderateScale(0, 0.1),
-    zIndex: moderateScale(40, 0.1),
+    top: 0, // Changed from moderateScale(0, 0.1) to 0
+    left: 0, // Changed from moderateScale(0, 0.1) to 0
+    zIndex: safeScale(40),
     justifyContent: 'center',
     alignItems: 'center',
   }

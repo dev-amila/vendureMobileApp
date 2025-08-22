@@ -2,8 +2,10 @@ import { ScaledSheet, moderateScale } from "react-native-size-matters";
 
 export default ScaledSheet.create({
   container: {
-    // flex: 1,
-    backgroundColor: "white",
+    flex: 1,
+    backgroundColor: "red",
+    // backgroundColor: "white",
+
   },
   content: {
     flex: 1,

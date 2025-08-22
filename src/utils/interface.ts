@@ -96,6 +96,16 @@ export interface Category {
     price: number;
   }
 
+  export interface Order {
+    id?: string;
+    totalWithTax: number;
+    total: number;
+    lines: OrderLine[];
+    shippingAddress?: Address;
+    shippingMethod?: ShippingMethod;
+    state?: string;
+  }
+
 
   // store interfaces
   

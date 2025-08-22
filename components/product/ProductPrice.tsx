@@ -12,10 +12,10 @@ const ProductPrice: React.FC<ProductPriceProps> = ({ price }) => {
   return (
     <View style={[styles.container && styles.columnReverse]}>
       <View style={styles.priceContainer}>
+        <Text>Rs. </Text>
         <Text style={styles.priceText}>
           {formatNumber(price)}
         </Text>
-        <Text>€</Text>
       </View>
     </View>
   );

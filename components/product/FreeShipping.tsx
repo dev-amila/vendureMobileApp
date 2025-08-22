@@ -8,7 +8,7 @@ export default function FreeShipping() {
       <View style={styles.innerContainer}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>Free Shipping</Text>
-          <Text style={styles.description}>Order over 50€</Text>
+          <Text style={styles.description}>Order over Rs. 1000</Text>
         </View>
         <View>
           <Image

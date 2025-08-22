@@ -90,10 +90,10 @@ export default function Cart() {
               <Text style={styles.totalText}>Total:</Text>
               <View style={styles.totalPriceContainer}>
                 <Text style={styles.totalPriceWithTax}>
-                  {formatNumber(order?.totalWithTax)}Rs.
+                  Rs. {formatNumber(order?.totalWithTax)}
                 </Text>
                 <Text style={styles.totalPrice}>
-                  {formatNumber(order?.total)}Rs.
+                  Rs. {formatNumber(order?.total)}
                 </Text>
               </View>
               <Button

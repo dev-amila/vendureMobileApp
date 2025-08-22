@@ -51,18 +51,15 @@ const CartItem = memo(({ item, refetchCart }: CartItemProps) => {
             <Text style={[styles.infoText, { color: "green" }]}>In stock</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoText}>Price: {totalPriceFormatted}</Text>
-            <Text>€</Text>
+            <Text style={styles.infoText}>Price: Rs. {totalPriceFormatted}</Text>
           </View>
           <View style={styles.infoRow}>
-            <Text style={styles.infoText}>Discounts: {discountFormatted}</Text>
-            <Text>€</Text>
+            <Text style={styles.infoText}>Discounts:  {discountFormatted}</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.infoText}>
-              Total: {priceWithDiscountAndQuantityFormatted}
+              Total: Rs. {priceWithDiscountAndQuantityFormatted}
             </Text>
-            <Text>€</Text>
           </View>
         </View>
       </View>

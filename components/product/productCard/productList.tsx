@@ -57,7 +57,6 @@ const ProductList: React.FC<ProductListProps> = ({
         [String(itemId)]: false,
       }));
     }, 3000);
-    console.log(itemId, );
     
   };
   

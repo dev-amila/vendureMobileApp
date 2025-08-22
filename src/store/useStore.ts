@@ -1,7 +1,24 @@
+import * as SecureStore from "expo-secure-store";
 import { create } from "zustand";
-import { persist, devtools } from "zustand/middleware";
-import {  StoreState} from "../utils/interface";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import { StoreState } from "../utils/interface";
 
+const secureStorage = {
+	getItem: async (name: string): Promise<string | null> => {
+		try {
+			const value = await SecureStore.getItemAsync(name);
+			return value ?? null;
+		} catch {
+			return null;
+		}
+	},
+	setItem: async (name: string, value: string): Promise<void> => {
+		await SecureStore.setItemAsync(name, value);
+	},
+	removeItem: async (name: string): Promise<void> => {
+		await SecureStore.deleteItemAsync(name);
+	},
+};
 
 export const useStore = create<StoreState>()(
   devtools(
@@ -40,7 +57,8 @@ export const useStore = create<StoreState>()(
           ),
       }),
       {
-        name: "ecommerce-store", // localStorage key
+        name: "ecommerce-store",
+        storage: createJSONStorage(() => secureStorage),
       }
     )
   )

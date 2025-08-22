@@ -36,16 +36,16 @@ const CartInfo: React.FC<Order> = ({ taxSummary }) => {
           <View style={styles.infoRow_CartInfo}>
             <Text>Taxe Base</Text>
             <View style={styles.priceContainer}>
-              <Text style={styles.label}>{formatNumber(summary.taxBase)}</Text>
-              <Text style={styles.currency}>€</Text>
+              <Text style={styles.label}> Rs. {formatNumber(summary.taxBase)}</Text>
+              {/* <Text style={styles.currency}>€</Text> */}
             </View>
           </View>
 
           <View style={[styles.infoRow_CartInfo, {borderBottomColor: '#fff'}]}>
             <Text style={styles.label}>Total Taxes</Text>
             <View style={styles.priceContainer}>
-              <Text>{formatNumber(summary.taxTotal)}</Text>
-              <Text style={styles.currency}>€</Text>
+              <Text>Rs. {formatNumber(summary.taxTotal)}</Text>
+              {/* <Text style={styles.currency}>€</Text> */}
             </View>
           </View>
         </View>
